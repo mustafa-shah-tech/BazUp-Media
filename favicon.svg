@@ -1,0 +1,7 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="44" height="44" rx="8" fill="#0a1628"/>
+  <!-- Eagle silhouette -->
+  <path d="M22 8C22 8 14 12 12 18C10 24 14 26 14 26C14 26 10 28 9 32C13 30 16 29 16 29C16 29 15 33 17 36C19 33 20 30 20 30C20 30 21 34 22 36C23 34 24 30 24 30C24 30 25 33 27 36C29 33 28 29 28 29C28 29 31 30 35 32C34 28 30 26 30 26C30 26 34 24 32 18C30 12 22 8 22 8Z" fill="#d4b100"/>
+  <path d="M22 10L20 16H24L22 10Z" fill="#FAF7F0" opacity="0.8"/>
+  <circle cx="22" cy="20" r="2.5" fill="#FAF7F0"/>
+</svg>

@@ -97,8 +97,12 @@
 
   function initLogoUploader() {
     // Restore persisted logo
-    const saved = localStorage.getItem('bazup_logo');
-    if (saved) applyLogo(saved);
+    try {
+      const saved = localStorage.getItem('bazup_logo');
+      if (saved) applyLogo(saved);
+    } catch (e) {
+      console.warn('Could not restore logo from storage:', e);
+    }
 
     $$('.logo-upload-trigger').forEach(function (input) {
       input.addEventListener('change', function (e) {
@@ -107,6 +111,11 @@
         const reader = new FileReader();
         reader.onload = function (ev) {
           const dataUrl = ev.target.result;
+          // Reject files over 200KB when base64-encoded (~150KB raw)
+          if (dataUrl.length > 200000) {
+            alert('Logo file is too large. Please use an SVG or a small PNG under 150KB.');
+            return;
+          }
           localStorage.setItem('bazup_logo', dataUrl);
           applyLogo(dataUrl);
         };
@@ -137,23 +146,37 @@
 
       if (!valid) return;
 
-      // Disable submit button while "sending"
+      // Disable submit button while sending
       const btn = form.querySelector('[type="submit"]');
       const original = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      // Simulate async send (replace with real backend/formspree)
-      setTimeout(function () {
+      // Submit via Web3Forms
+      const formData = new FormData(form);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
         btn.disabled = false;
         btn.textContent = original;
         form.reset();
-        const success = $('#form-success');
-        if (success) {
-          success.classList.add('show');
-          setTimeout(function () { success.classList.remove('show'); }, 5000);
+        if (data.success) {
+          var success = document.getElementById('form-success');
+          if (success) {
+            success.classList.add('show');
+            setTimeout(function () { success.classList.remove('show'); }, 5000);
+          }
+        } else {
+          btn.textContent = 'Failed. Try again.';
         }
-      }, 1200);
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Error. Try again.';
+      });
     });
   }
 
