@@ -1363,3 +1363,22 @@ footer {
 
   .footer-inner { gap: 24px; }
 }
+
+/* ─── Tier Price ─────────────────────────────────────────── */
+.tier-price {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 12px 0 0;
+  letter-spacing: -0.02em;
+}
+.tier-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy-60);
+  margin-left: 2px;
+}
+.tier-card.featured .tier-price {
+  color: var(--gold);
+}
