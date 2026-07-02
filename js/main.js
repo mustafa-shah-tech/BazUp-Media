@@ -64,65 +64,7 @@
     });
   }
 
-  /* ── Logo uploader ───────────────────────────────────── */
-  function applyLogo(dataUrl) {
-    $$('.logo-mark').forEach(function (mark) {
-      // Remove existing custom img if any
-      const existing = mark.querySelector('img.logo-custom');
-      if (existing) existing.remove();
 
-      // Hide default SVG
-      const svgWrap = mark.querySelector('.logo-svg-wrap');
-      if (svgWrap) svgWrap.style.display = 'none';
-
-      // Insert image
-      const img = document.createElement('img');
-      img.src = dataUrl;
-      img.alt = 'BazUp Media Logo';
-      img.className = 'logo-custom';
-      // insert before the file input
-      const input = mark.querySelector('.logo-upload-trigger');
-      mark.insertBefore(img, input);
-    });
-  }
-
-  function removeLogo() {
-    $$('.logo-mark').forEach(function (mark) {
-      const existing = mark.querySelector('img.logo-custom');
-      if (existing) existing.remove();
-      const svgWrap = mark.querySelector('.logo-svg-wrap');
-      if (svgWrap) svgWrap.style.display = '';
-    });
-  }
-
-  function initLogoUploader() {
-    // Restore persisted logo
-    try {
-      const saved = localStorage.getItem('bazup_logo');
-      if (saved) applyLogo(saved);
-    } catch (e) {
-      console.warn('Could not restore logo from storage:', e);
-    }
-
-    $$('.logo-upload-trigger').forEach(function (input) {
-      input.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (ev) {
-          const dataUrl = ev.target.result;
-          // Reject files over 200KB when base64-encoded (~150KB raw)
-          if (dataUrl.length > 200000) {
-            alert('Logo file is too large. Please use an SVG or a small PNG under 150KB.');
-            return;
-          }
-          localStorage.setItem('bazup_logo', dataUrl);
-          applyLogo(dataUrl);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
-  }
 
   /* ── Contact form ────────────────────────────────────── */
   function initContactForm() {
@@ -212,7 +154,7 @@
     setActiveNav();
     initNavScroll();
     initMobileMenu();
-    initLogoUploader();
+
     initContactForm();
     initFadeIn();
   });
