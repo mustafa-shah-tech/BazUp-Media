@@ -1287,22 +1287,46 @@ footer {
 .wa-float svg { width: 30px; height: 30px; fill: white; }
 
 /* ─── Responsive ─────────────────────────────────────────── */
+
+/* ── Large screens (1440px+) ── */
+@media (min-width: 1440px) {
+  :root { --max-width: 1320px; }
+  .hero-title { font-size: 68px; }
+}
+
+/* ── Laptop (1024px – 1280px) ── */
+@media (max-width: 1280px) {
+  .container { padding-inline: 32px; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-list { grid-template-columns: repeat(3, 1fr); }
+  .footer-inner { grid-template-columns: 1.2fr 1fr 1fr; gap: 32px; }
+  .tiers-grid { gap: 20px; }
+}
+
+/* ── Tablet landscape (860px – 1024px) ── */
 @media (max-width: 1024px) {
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .services-list { grid-template-columns: repeat(3, 1fr); }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hero-inner { gap: 40px; }
+  .tiers-grid { grid-template-columns: 1fr; max-width: 500px; margin-inline: auto; }
+  .hiw-grid::before { left: calc(20% + 10px); right: calc(20% + 10px); }
 }
 
+/* ── Hamburger trigger point ── */
 @media (max-width: 860px) {
   .nav-links, .nav-cta { display: none; }
   .nav-toggle { display: flex; }
 
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
   .hero-visual { order: -1; }
-  .hero-graphic { max-width: 340px; }
+  .hero-graphic { max-width: 380px; }
+  .hero { padding-block: 60px 48px; min-height: auto; }
+  .hero-sub { font-size: 16px; }
 
-  .hiw-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hiw-grid { grid-template-columns: 1fr; gap: 36px; }
   .hiw-grid::before { display: none; }
+  .hiw-step { padding: 0 16px; }
 
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
 
@@ -1310,18 +1334,31 @@ footer {
 
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
 
-  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .contact-form { padding: 32px 24px; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; text-align: center; }
 
   .cta-banner { padding: 48px 28px; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .cta-actions .btn { width: 100%; max-width: 340px; justify-content: center; }
 }
 
-@media (max-width: 600px) {
-  .section { padding-block: 64px; }
+/* ── Large phone / small tablet (600px – 860px) ── */
+@media (max-width: 768px) {
+  :root { --nav-height: 64px; }
+  .section { padding-block: 70px; }
+  .section-heading { font-size: clamp(24px, 5vw, 36px); }
+  .section-sub { font-size: 15px; }
 
-  .values-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(32px, 7vw, 48px); }
+  .hero-sub { max-width: 100%; }
+  .hero-actions { gap: 12px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+
+  .values-grid { grid-template-columns: 1fr; gap: 16px; }
+  .value-card { padding: 24px 20px; }
 
   .services-list { grid-template-columns: repeat(2, 1fr); }
 
@@ -1329,11 +1366,101 @@ footer {
 
   .portfolio-grid { grid-template-columns: 1fr; }
 
+  .footer-brand-desc { max-width: 100%; }
+  .footer-socials { flex-wrap: wrap; }
+
+  .cta-banner { border-radius: var(--radius-lg); }
+
+  .logo-name { font-size: 18px; }
+  .logo-tagline { font-size: 9px; }
+}
+
+/* ── Phone (up to 600px) ── */
+@media (max-width: 600px) {
+  :root { --nav-height: 60px; }
+  .container { padding-inline: 18px; }
+  .section { padding-block: 56px; }
+
+  .hero { padding-block: 48px 40px; }
+  .hero-title { font-size: clamp(28px, 8vw, 40px); }
+  .hero-sub { font-size: 15px; }
+  .hero-badge { font-size: 10px; }
+  .hero-trust { font-size: 12px; }
+
+  .values-grid { grid-template-columns: 1fr; gap: 14px; }
+  .value-card { padding: 20px 16px; }
+  .value-card h3 { font-size: 15px; }
+  .value-icon { width: 40px; height: 40px; }
+
+  .services-list { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .service-chip { padding: 18px 12px; }
+
+  .hiw-step { padding: 0; }
+  .hiw-num { width: 60px; height: 60px; font-size: 22px; }
+
+  .tiers-grid { max-width: 100%; }
+  .tier-card { padding: 28px 20px; }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card { padding: 24px 20px; }
+
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-item { padding: 24px 16px; }
+
+  .contact-form { padding: 24px 16px; }
   .form-row { grid-template-columns: 1fr; }
+  .contact-info h3 { font-size: 18px; }
+
+  .cta-banner { padding: 36px 20px; }
+  .cta-banner .section-heading { font-size: clamp(22px, 6vw, 32px); }
+
+  .footer-inner { gap: 24px; }
+  .footer-bottom { gap: 8px; }
+  .footer-bottom p { font-size: 12px; }
 
   .hero-stat-grid { grid-template-columns: 1fr 1fr; }
 
-  .footer-inner { gap: 24px; }
+  .hero-graphic { padding: 28px 20px; }
+
+  .mobile-menu a { font-size: 17px; padding: 14px 0; }
+  .mobile-menu .mobile-cta { gap: 12px; margin-top: 20px; }
+  .mobile-menu .mobile-cta .btn { width: 100%; justify-content: center; }
+
+  .wa-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+  .wa-float svg { width: 24px; height: 24px; }
+}
+
+/* ── Small phone (up to 400px) ── */
+@media (max-width: 400px) {
+  :root { --nav-height: 56px; }
+  .container { padding-inline: 14px; }
+  .section { padding-block: 48px; }
+
+  .hero-title { font-size: clamp(26px, 9vw, 34px); }
+  .hero-actions .btn { padding: 13px 20px; font-size: 14px; }
+
+  .logo-name { font-size: 16px; }
+  .logo-tagline { display: none; }
+  .logo-mark { width: 36px; height: 36px; }
+  .logo-mark .logo-svg-wrap,
+  .logo-mark .logo-svg-wrap img { width: 36px; height: 36px; }
+
+  .services-list { grid-template-columns: 1fr; }
+  .service-chip { padding: 16px 12px; }
+
+  .tier-card { padding: 24px 16px; }
+  .tier-title { font-size: 22px; }
+  .tier-price { font-size: 1.6rem; }
+
+  .nav-toggle { width: 26px; }
+
+  .mobile-menu { padding: 18px 14px 24px; }
+  .mobile-menu a { font-size: 16px; }
+
+  .cta-banner { padding: 28px 14px; border-radius: var(--radius-md); }
+  .cta-actions .btn { max-width: 100%; }
+
+  .footer-inner { gap: 20px; }
 }
 
 /* ─── Tier Price ─────────────────────────────────────────── */
