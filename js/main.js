@@ -22,15 +22,55 @@
     });
   }
 
-  /* ── Nav scroll shadow ───────────────────────────────── */
+  /* ── Nav scroll animations ───────────────────────────── */
   function initNavScroll() {
-    const nav = $('.nav');
+    var nav = $('.nav');
     if (!nav) return;
-    function onScroll() {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
+
+    var lastY      = window.scrollY;
+    var ticking    = false;
+    var COMPACT_AT = 80;   /* px — shrink threshold */
+    var HIDE_AT    = 120;  /* px — must scroll this far before hide kicks in */
+
+    function updateNav() {
+      var y     = window.scrollY;
+      var delta = y - lastY;
+
+      /* Shadow */
+      nav.classList.toggle('scrolled', y > 20);
+
+      /* Compact (shrink height) */
+      nav.classList.toggle('compact', y > COMPACT_AT);
+
+      /* Hide / show — only after scrolled past threshold */
+      if (y > HIDE_AT) {
+        if (delta > 4) {
+          /* Scrolling down — hide only if mobile menu is not open */
+          var menu = $('.mobile-menu');
+          if (!menu || !menu.classList.contains('open')) {
+            nav.classList.add('hidden');
+          }
+        } else if (delta < -4) {
+          /* Scrolling up — show */
+          nav.classList.remove('hidden');
+        }
+      } else {
+        /* Near top — always show */
+        nav.classList.remove('hidden');
+      }
+
+      lastY   = y;
+      ticking = false;
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateNav();
   }
 
   /* ── Mobile menu toggle ──────────────────────────────── */

@@ -187,9 +187,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
-  transition: box-shadow var(--transition);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.3s ease,
+    background 0.3s ease;
 }
 .nav.scrolled { box-shadow: var(--shadow-md); }
+
+/* Shrink nav after scrolling past hero */
+.nav.compact {
+  height: 56px;
+  background: rgba(250, 247, 240, 0.98);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Hide nav when scrolling down */
+.nav.hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
+}
 
 .nav-inner {
   display: flex;
