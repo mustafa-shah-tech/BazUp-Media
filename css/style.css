@@ -1481,3 +1481,59 @@ footer {
 .tier-card.featured .tier-price {
   color: var(--gold);
 }
+
+/* ── LTO Banner ──────────────────────────────────────── */
+.lto-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: linear-gradient(135deg, var(--gold) 0%, #b8960a 100%);
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.lto-tag {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--navy);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.lto-text {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+/* ── Strikethrough original price ────────────────────── */
+.tier-price-wrap {
+  margin: 12px 0 0;
+}
+.tier-price-original {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy-60);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+.tier-price-wrap .tier-price {
+  margin-top: 0;
+}
+
+@media (max-width: 480px) {
+  .lto-banner {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+}
