@@ -377,10 +377,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 780px;
 }
 
 .hero-badge {
@@ -426,12 +434,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--navy-60);
   line-height: 1.72;
   margin-bottom: 36px;
-  max-width: 480px;
+  max-width: 600px;
+  margin-inline: auto;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
 }
@@ -439,6 +449,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-trust {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: 28px;
   color: var(--navy-60);
@@ -456,6 +467,46 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 8px;
   border-radius: 50%;
   background: var(--gold);
+}
+
+/* ── Platform strip ──────────────────────────────────── */
+.hero-platforms {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.hero-platforms-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--navy-60);
+}
+.hero-platforms-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.platform-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.platform-chip svg {
+  color: var(--gold);
+  flex-shrink: 0;
 }
 
 /* Hero visual side */
@@ -1308,7 +1359,7 @@ footer {
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .services-list { grid-template-columns: repeat(3, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .hero-inner { gap: 40px; }
+  .hero-inner { gap: 0; }
   .tiers-grid { grid-template-columns: 1fr; max-width: 500px; margin-inline: auto; }
   .hiw-grid::before { left: calc(20% + 10px); right: calc(20% + 10px); }
 }
@@ -1318,9 +1369,6 @@ footer {
   .nav-links, .nav-cta { display: none; }
   .nav-toggle { display: flex; }
 
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero-visual { order: -1; }
-  .hero-graphic { max-width: 380px; }
   .hero { padding-block: 60px 48px; min-height: auto; }
   .hero-sub { font-size: 16px; }
 
