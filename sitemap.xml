@@ -11,6 +11,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://bazupmedia.com/about.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://bazupmedia.com/portfolio.html</loc>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
