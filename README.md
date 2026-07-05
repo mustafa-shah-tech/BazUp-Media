@@ -1,6 +1,6 @@
 # BazUp Media
 
-> **We Grow Your Business** — 100% organic social media growth for local businesses.
+> **We Grow Your Business** — 100% organic social media growth for local businesses. No ads. Ever.
 
 A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, and JavaScript. No frameworks. No build step. Deploys anywhere.
 
@@ -17,8 +17,8 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 
 | Page | Purpose |
 |---|---|
-| `index.html` | Hero, stats, services overview, social proof |
-| `services.html` | Full service breakdown and pricing |
+| `index.html` | Hero, platform trust strip, services overview, social proof |
+| `services.html` | Full service tier breakdown |
 | `portfolio.html` | Client results and case studies |
 | `contact.html` | Contact form + WhatsApp CTA |
 
@@ -29,7 +29,7 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 | Layer | Tech |
 |---|---|
 | Markup | HTML5 (semantic) |
-| Styling | CSS3 (custom properties, flexbox, grid) |
+| Styling | CSS3 (custom properties, flexbox, grid, CSS transitions) |
 | Scripting | Vanilla JavaScript (ES6+, IIFE module pattern) |
 | Fonts | Plus Jakarta Sans + Inter (Google Fonts) |
 | Form backend | [Web3Forms](https://web3forms.com) (free tier) |
@@ -45,15 +45,13 @@ BazUp-Media/
 ├── services.html       # Services page
 ├── portfolio.html      # Portfolio page
 ├── contact.html        # Contact page
-├── favicon.svg         # Favicon (SVG, all modern browsers)
-├── favicon.ico         # Favicon fallback (legacy browsers)
-├── og-image.png        # Social share preview image (1200×630)
 ├── robots.txt          # Crawl rules
 ├── sitemap.xml         # XML sitemap for search engines
+├── assets/             # Images and static assets
 ├── css/
 │   └── style.css       # Full design system — variables, layout, components
 └── js/
-    └── main.js         # Nav, mobile menu, logo uploader, contact form, animations
+    └── main.js         # Nav scroll, mobile menu, contact form, scroll animations
 ```
 
 ---
@@ -71,6 +69,57 @@ All visual tokens are defined as CSS custom properties in `css/style.css`:
 ```
 
 To retheme the site, update only the `:root` block — everything cascades automatically.
+
+---
+
+## Navigation Features
+
+The navbar (`js/main.js → initNavScroll()`) includes three scroll-driven behaviors:
+
+| Behaviour | Trigger |
+|---|---|
+| **Shadow** | Appears when `scrollY > 20px` |
+| **Compact** (56px height) | Activates when `scrollY > 80px` |
+| **Hide on scroll down** | Kicks in after `scrollY > 120px`, hides with `translateY(-100%)` |
+| **Reappear on scroll up** | Smooth slide-down on any upward scroll |
+
+Uses `requestAnimationFrame` throttling to prevent jitter. A `±4px` delta deadzone stops micro-scroll flickering. If the mobile menu is open, the nav **cannot** hide.
+
+---
+
+## Mobile Menu
+
+Full-screen overlay — slides in from the right edge on hamburger tap.
+
+- **Background:** Navy (`#0a1628`)
+- **Animation:** `translateX(100%) → translateX(0)` in 0.38s with `cubic-bezier(0.4, 0, 0.2, 1)`
+- **Links:** 2rem, ivory, gold + indent on hover/active
+- **Hamburger icon:** Turns white when overlay is open (`z-index: 1001` above overlay)
+- **CTA buttons:** Book Free Consultation + Chat on WhatsApp
+- **Social strip:** Instagram, TikTok, Facebook, LinkedIn icons at the bottom, muted ivory → gold on hover
+
+---
+
+## Social Media Handles
+
+| Platform | Handle / URL |
+|---|---|
+| Instagram | [@bazupmedia1](https://instagram.com/bazupmedia1) |
+| TikTok | [@bazupmedia1](https://tiktok.com/@bazupmedia1) |
+| Facebook | [bazupmedia](https://facebook.com/bazupmedia) |
+| LinkedIn | [bazupmedia](https://linkedin.com/company/bazupmedia) |
+
+---
+
+## Contact
+
+| Channel | Details |
+|---|---|
+| WhatsApp | [+92 327 088 0908](https://wa.me/923270880908) |
+| Instagram DM | [@bazupmedia1](https://instagram.com/bazupmedia1) |
+| Email | Via contact form (Web3Forms) |
+
+WhatsApp number is stored as `923270880908` across all four HTML files. To update it, search the project for `923270880908` and replace all instances.
 
 ---
 
@@ -142,24 +191,6 @@ IE is not supported (and it's dead — so that's fine).
 
 ---
 
-## WhatsApp CTA
-
-The WhatsApp number is hardcoded in multiple places as `wa.me/923270880908`. To change it, search the project for `923270880908` and replace all instances.
-
----
-
-## Logo Uploader
-
-The nav includes a client-facing logo uploader (click the eagle icon). It:
-- Accepts PNG, JPG, SVG, WEBP
-- Persists the logo in `localStorage` across sessions
-- Rejects files over ~150KB to avoid storage quota issues
-- Reverts to the default eagle SVG if no logo is uploaded
-
-This is a demo/handover feature. Remove it before going live if not needed.
-
----
-
 ## Local Development
 
 No build step needed. Just open in browser:
@@ -177,14 +208,9 @@ npx serve .
 
 ---
 
-## Contributing
+## Pricing Policy
 
-This is a client project. PRs are not expected, but if you fork it:
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b fix/your-fix-name`
-3. Commit with clear messages: `git commit -m "fix: contact form error state"`
-4. Push and open a PR against `main`
+Pricing is **never displayed publicly** on the site. All tier information is discussed directly with prospective clients. The services page shows tier names and feature lists only — no prices.
 
 ---
 
