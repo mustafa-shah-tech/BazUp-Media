@@ -106,6 +106,27 @@
 
 
 
+  /* ── Platform chip multi-select ─────────────────────── */
+  function initPlatformChips() {
+    var container = document.getElementById('platform-chips');
+    var hidden    = document.getElementById('contact-platform');
+    if (!container || !hidden) return;
+
+    container.addEventListener('click', function (e) {
+      var chip = e.target.closest('.pchip');
+      if (!chip) return;
+
+      chip.classList.toggle('selected');
+      chip.setAttribute('aria-pressed', chip.classList.contains('selected') ? 'true' : 'false');
+
+      /* Collect all selected values into hidden input */
+      var selected = Array.from(container.querySelectorAll('.pchip.selected'))
+        .map(function (c) { return c.dataset.value; });
+
+      hidden.value = selected.length ? selected.join(', ') : '';
+    });
+  }
+
   /* ── Contact form ────────────────────────────────────── */
   function initContactForm() {
     const form = $('#contact-form');
@@ -134,31 +155,40 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      // Submit via Web3Forms
-      const formData = new FormData(form);
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        btn.disabled = false;
-        btn.textContent = original;
-        form.reset();
-        if (data.success) {
-          var success = document.getElementById('form-success');
-          if (success) {
-            success.classList.add('show');
-            setTimeout(function () { success.classList.remove('show'); }, 5000);
-          }
-        } else {
-          btn.textContent = 'Failed. Try again.';
-        }
-      })
-      .catch(function () {
-        btn.disabled = false;
-        btn.textContent = 'Error. Try again.';
-      });
+      /* ── Build WhatsApp message from form fields ── */
+      var name      = (form.querySelector('[name="name"]')      || form.querySelector('#contact-name'))      ? (form.querySelector('[name="name"]')      || form.querySelector('#contact-name')).value.trim()      : '';
+      var business  = (form.querySelector('[name="business"]')  || form.querySelector('#contact-business'))  ? (form.querySelector('[name="business"]')  || form.querySelector('#contact-business')).value.trim()  : '';
+      var email     = (form.querySelector('[name="email"]')     || form.querySelector('#contact-email'))     ? (form.querySelector('[name="email"]')     || form.querySelector('#contact-email')).value.trim()     : '';
+      var phone     = (form.querySelector('[name="phone"]')     || form.querySelector('#contact-phone'))     ? (form.querySelector('[name="phone"]')     || form.querySelector('#contact-phone')).value.trim()     : '';
+      var platforms = (form.querySelector('[name="platforms"]') || form.querySelector('#contact-platform'))
+        ? (form.querySelector('[name="platforms"]') || form.querySelector('#contact-platform')).value.trim()
+        : '';
+      var message   = (form.querySelector('[name="message"]')   || form.querySelector('#contact-message'))   ? (form.querySelector('[name="message"]')   || form.querySelector('#contact-message')).value.trim()   : '';
+
+      var text =
+        'Hi BazUp Media! I just filled out your contact form.\n\n' +
+        '\uD83D\uDC64 Name: '     + name     + '\n' +
+        '\uD83C\uDFE2 Business: ' + business + '\n' +
+        (email     ? '\uD83D\uDCE7 Email: '              + email     + '\n' : '') +
+        (phone     ? '\uD83D\uDCF1 My WhatsApp/Phone: '  + phone     + '\n' : '') +
+        (platforms ? '\uD83D\uDCF2 Platforms: '          + platforms + '\n' : '') +
+        '\n\uD83D\uDCAC Message:\n' + message;
+
+      var waUrl = 'https://wa.me/923270880908?text=' + encodeURIComponent(text);
+
+      btn.disabled = false;
+      btn.textContent = original;
+      form.reset();
+
+      /* Show success message */
+      var success = document.getElementById('form-success');
+      if (success) {
+        success.classList.add('show');
+        setTimeout(function () { success.classList.remove('show'); }, 5000);
+      }
+
+      /* Open WhatsApp */
+      window.open(waUrl, '_blank');
     });
   }
 
@@ -194,7 +224,7 @@
     setActiveNav();
     initNavScroll();
     initMobileMenu();
-
+    initPlatformChips();
     initContactForm();
     initFadeIn();
   });
