@@ -1599,18 +1599,20 @@ footer {
   color: var(--gold);
 }
 
-/* ── Tier CTA Prompt ─────────────────────────────────── */
-.tier-cta-prompt {
-  font-family: var(--font-head);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--navy-60);
+/* ── LTO strikethrough price ─────────────────────────── */
+.tier-price-wrap {
   margin: 12px 0 0;
-  letter-spacing: 0.01em;
 }
-.tier-card.featured .tier-cta-prompt {
-  color: var(--gold);
-  opacity: 0.85;
+.tier-price-original {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy-60);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+.tier-price-wrap .tier-price {
+  margin-top: 0;
 }
 
 /* ── Platform chips ──────────────────────────────────── */
