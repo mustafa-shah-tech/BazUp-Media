@@ -2,26 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bazupmedia.com/</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://bazupmedia.com/services.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://bazupmedia.com/about.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://bazupmedia.com/portfolio.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://bazupmedia.com/contact.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <priority>0.6</priority>
     <changefreq>yearly</changefreq>
   </url>

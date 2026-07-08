@@ -1,6 +1,6 @@
 # BazUp Media
 
-> **We Grow Your Business** — 100% organic social media growth for local businesses. No ads. Ever.
+> **We Grow Your Business** — Organic social media growth and paid ads for local businesses. Real followers, real engagement, real results.
 
 A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, and JavaScript. No frameworks. No build step. Deploys anywhere.
 
@@ -18,7 +18,8 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 | Page | Purpose |
 |---|---|
 | `index.html` | Hero, platform trust strip, services overview, social proof |
-| `services.html` | Full service tier breakdown |
+| `about.html` | About the agency and mission |
+| `services.html` | Full service tier breakdown and pricing |
 | `portfolio.html` | Client results and case studies |
 | `contact.html` | Contact form + WhatsApp CTA |
 
@@ -32,7 +33,7 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 | Styling | CSS3 (custom properties, flexbox, grid, CSS transitions) |
 | Scripting | Vanilla JavaScript (ES6+, IIFE module pattern) |
 | Fonts | Plus Jakarta Sans + Inter (Google Fonts) |
-| Form backend | [Web3Forms](https://web3forms.com) (free tier) |
+| Form backend | Custom WhatsApp Redirect (No API required) |
 | Hosting | GitHub Pages / Netlify / any static host |
 
 ---
@@ -42,6 +43,7 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 ```
 BazUp-Media/
 ├── index.html          # Home page
+├── about.html          # About page
 ├── services.html       # Services page
 ├── portfolio.html      # Portfolio page
 ├── contact.html        # Contact page
@@ -117,24 +119,15 @@ Full-screen overlay — slides in from the right edge on hamburger tap.
 |---|---|
 | WhatsApp | [+92 327 088 0908](https://wa.me/923270880908) |
 | Instagram DM | [@bazupmedia1](https://instagram.com/bazupmedia1) |
-| Email | Via contact form (Web3Forms) |
+| Email | bazupmedia@gmail.com |
 
-WhatsApp number is stored as `923270880908` across all four HTML files. To update it, search the project for `923270880908` and replace all instances.
+WhatsApp number is stored as `923270880908` across all five HTML files and `js/main.js`. To update it, search the project for `923270880908` and replace all instances.
 
 ---
 
 ## Contact Form Setup
 
-The contact form uses **Web3Forms** — free, no server required.
-
-1. Sign up at [web3forms.com](https://web3forms.com) and create a new form.
-2. Copy your **Access Key**.
-3. Open `contact.html` and find:
-   ```html
-   <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-   ```
-4. Replace `YOUR_WEB3FORMS_ACCESS_KEY` with your real key.
-5. Done. Form submissions go directly to your email.
+The contact form is purely frontend. It collects all field values (Name, Email, Platforms, Message) and redirects the user directly to a pre-filled WhatsApp conversation using the `wa.me` API. No backend, keys, or third-party form services are required.
 
 ---
 
@@ -157,7 +150,7 @@ The contact form uses **Web3Forms** — free, no server required.
 
 After pointing your domain:
 
-- [ ] Update all `canonical` URLs in the 4 HTML files
+- [ ] Update all `canonical` URLs in the 5 HTML files
 - [ ] Update `og:url` in the OG meta blocks
 - [ ] Update `Sitemap:` URL in `robots.txt`
 - [ ] Update all `<loc>` URLs in `sitemap.xml`
@@ -172,7 +165,7 @@ After pointing your domain:
 - Absolute canonical URLs per page
 - Open Graph + Twitter Card meta on all pages
 - `robots.txt` with sitemap reference
-- `sitemap.xml` with all 4 pages and priority weights
+- `sitemap.xml` with all 5 pages and priority weights
 - No render-blocking scripts (`main.js` loads at end of body)
 
 ---
@@ -210,7 +203,7 @@ npx serve .
 
 ## Pricing Policy
 
-Pricing is **never displayed publicly** on the site. All tier information is discussed directly with prospective clients. The services page shows tier names and feature lists only — no prices.
+Pricing is displayed transparently on the `services.html` page. Tiers include Starter, Standard, and Premium, reflecting a mix of organic growth and paid ad services.
 
 ---
 
