@@ -1678,7 +1678,7 @@ footer {
 }
 
 .faq-item {
-  padding: 24px 0;
+  padding: 20px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1691,15 +1691,41 @@ footer {
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin: 0;
   line-height: 1.4;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none; /* hide default arrow */
+}
+
+.faq-q::-webkit-details-marker {
+  display: none; /* hide default arrow in webkit */
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--gold);
+  transition: transform 0.3s ease;
+}
+
+details[open] .faq-icon {
+  transform: rotate(45deg);
 }
 
 .faq-a {
   font-size: 0.95rem;
   color: var(--navy-60);
   line-height: 1.75;
-  margin: 0;
+  margin: 16px 0 0 0;
+  animation: faq-slide-down 0.3s ease-out;
+}
+
+@keyframes faq-slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Portfolio Showcase Cards ────────────────────────── */
