@@ -1608,6 +1608,20 @@ footer {
   margin-top: 0;
 }
 
+/* ── Tier CTA Label ──────────────────────────────────── */
+.tier-cta-label {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-60);
+  margin: 12px 0 0;
+  letter-spacing: 0.01em;
+}
+.tier-card.featured .tier-cta-label {
+  color: var(--gold);
+  opacity: 0.9;
+}
+
 /* ── Platform chips ──────────────────────────────────── */
 .platform-chips {
   display: flex;
