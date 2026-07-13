@@ -8,8 +8,7 @@ A clean, fast, fully static agency landing site built with Vanilla HTML, CSS, an
 
 ## Live Preview
 
-<!-- Replace with your actual deployment URL -->
-🌐 **[bazupmedia.com](https://bazupmedia.com)**
+🌐 **[bazupmedia.online](https://bazupmedia.online)**
 
 ---
 
@@ -150,10 +149,10 @@ The contact form is purely frontend. It collects all field values (Name, Email, 
 
 After pointing your domain:
 
-- [ ] Update all `canonical` URLs in the 5 HTML files
-- [ ] Update `og:url` in the OG meta blocks
-- [ ] Update `Sitemap:` URL in `robots.txt`
-- [ ] Update all `<loc>` URLs in `sitemap.xml`
+- [x] Update all `canonical` URLs in the 5 HTML files
+- [x] Update `og:url` in the OG meta blocks
+- [x] Update `Sitemap:` URL in `robots.txt`
+- [x] Update all `<loc>` URLs in `sitemap.xml`
 - [ ] Submit `sitemap.xml` to [Google Search Console](https://search.google.com/search-console)
 
 ---
